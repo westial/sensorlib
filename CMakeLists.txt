@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(sensor_main main.cpp)
 
-include_directories(include)
-add_subdirectory(include)
+include_directories(include/sensor)
+add_subdirectory(include/sensor)
 
 # Testing
 
