@@ -6,14 +6,14 @@
 
 class FunctionalSensor : public Sensor {
  private:
-  long (*readInputFunc)(const long);
+  long (*captureFn)(const long);
   long id;
   RangeCalculator *calculator;
   long value{};
 
  public:
   FunctionalSensor(
-      long (*readInputFunc)(const long),
+      long (*captureFn)(const long),
       long id,
       RangeCalculator *calculator);
 

@@ -1,10 +1,10 @@
 #include "FunctionalSensor.h"
 
 FunctionalSensor::FunctionalSensor(
-    long (*readInputFunc)(const long),
+    long (*captureFn)(const long),
     long id,
     RangeCalculator *calculator) {
-  this->readInputFunc = readInputFunc;
+  this->captureFn = captureFn;
   this->id = id;
   this->calculator = calculator;
 }
@@ -18,7 +18,7 @@ long FunctionalSensor::relative() {
   return calculator->relative(value);
 }
 void FunctionalSensor::capture() {
-  this->value = readInputFunc(id);
+  this->value = captureFn(id);
 }
 FunctionalSensor::~FunctionalSensor() {
   delete calculator;
