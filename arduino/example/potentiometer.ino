@@ -5,7 +5,7 @@
 #include <sensorlib.h>
 
 #define MIN_SENSOR_VALUE    0
-#define MAX_SENSOR_VALUE    1023
+#define MAX_SENSOR_VALUE    138   // Sampled with 5K potentiometer.
 #define DEFAULT_DURATION    100
 #define WRITE_PIN_SENSOR_1  2
 #define READ_PIN_SENSOR_1   A2
@@ -50,6 +50,7 @@ void setup() {
 void loop() {
   // Do the stuff
   Serial.println("Capturing potentiometer with ID as #1");
+  potentiometer->capture();
   Serial.print("Absolute value = ");
   Serial.println(potentiometer->absolute());
   Serial.print("Relative value = ");
