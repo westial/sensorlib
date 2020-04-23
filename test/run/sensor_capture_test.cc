@@ -38,6 +38,7 @@ TEST(SensorCaptureTestSuite, Percentage) {
   Sensor *potentiometer = new FunctionalSensor(
       readPotentiometer,
       123,
+      "Title for my sensor",
       calculator
   );
 
@@ -66,6 +67,7 @@ TEST(SensorCaptureTestSuite, Absolute) {
   Sensor *potentiometer = new FunctionalSensor(
       readPotentiometer,
       123,
+      "Title for my sensor",
       calculator
   );
 
@@ -94,6 +96,7 @@ TEST(SensorCaptureTestSuite, Relative) {
   Sensor *potentiometer = new FunctionalSensor(
       readPotentiometer,
       123,
+      "Title for my sensor",
       calculator
   );
 
@@ -106,4 +109,26 @@ TEST(SensorCaptureTestSuite, Relative) {
   potentiometer->capture();
 
   EXPECT_EQ(12, potentiometer->relative());
+}
+
+/**
+ * Scenario:
+ * Set a bigger title than allowed
+ *
+ * Then:
+ * Setting title cuts the title just in 31 chars and a the last null char.
+ */
+TEST(SensorTitleTestSuite, Overflow) {
+  RangeCalculator *calculator = new BasicRangeCalculator(new Percentage());
+  calculator->setRange(0, 500);
+
+  Sensor *potentiometer = new FunctionalSensor(
+      readPotentiometer,
+      123,
+      "1234567890123456789012345678901234567890",   // 40 chars
+      calculator
+  );
+
+  EXPECT_EQ('\0', potentiometer->getTitle()[31]);
+  EXPECT_EQ('1', potentiometer->getTitle()[30]);
 }

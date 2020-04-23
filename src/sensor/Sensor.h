@@ -19,12 +19,16 @@
 #ifndef POTENTIOMETER_LIB__CONTROLPANEL_H_
 #define POTENTIOMETER_LIB__CONTROLPANEL_H_
 
+#define MAX_TITLE_LENGTH 32
+
 class Sensor {
  public:
   virtual void capture() = 0;
   virtual unsigned short percent() = 0;
   virtual long absolute() = 0;
   virtual long relative() = 0;
+  virtual long getId() = 0;
+  virtual char *getTitle() = 0;
   virtual ~Sensor() = default;
 };
 

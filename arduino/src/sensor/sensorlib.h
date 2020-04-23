@@ -10,15 +10,15 @@ Sensor *createSensor(
     long (*capture)(const long),
     long minSensorValue,
     long maxSensorValue,
-    int sensorId
+    int sensorId,
+    const char sensorTitle[]
     ) {
   RangeCalculator *calculator;
-  Sensor *potentiometer;
 
   calculator = new BasicRangeCalculator(new Percentage());
   calculator->setRange(minSensorValue, maxSensorValue);
 
-  return new FunctionalSensor(capture, sensorId, calculator);
+  return new FunctionalSensor(capture, sensorId, sensorTitle, calculator);
 }
 
 long captureFn(const long sensorId);

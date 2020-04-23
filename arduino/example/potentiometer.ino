@@ -44,7 +44,12 @@ long captureFn(const long potentiometerId) {
 void setup() {
   Serial.begin(9600);
   // Define potentiometer sensor with ID as #1
-  potentiometer = createSensor(captureFn, MIN_SENSOR_VALUE, MAX_SENSOR_VALUE, 1);
+  potentiometer = createSensor(
+      captureFn,
+      MIN_SENSOR_VALUE,
+      MAX_SENSOR_VALUE,
+      1,
+      "Potentiometer");
 }
 
 void loop() {
